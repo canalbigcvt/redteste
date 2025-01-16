@@ -7,34 +7,40 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fluid-player@3.0.4/dist/fluidplayer.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f9f9f9; /* Fundo suave */
+            color: #333;
         }
 
         .menu {
             display: flex;
             justify-content: center;
-            background: #333;
-            padding: 10px;
+            background: linear-gradient(45deg, #ff7cbf, #ff61a6); /* Gradiente suave rosa */
+            padding: 15px;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .menu button {
-            background: #444;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            margin: 0 5px;
+            background: #ffffff;
+            color: #ff61a6;
+            border: 2px solid #ff61a6;
+            padding: 12px 25px;
+            margin: 0 10px;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 30px; /* Bordas arredondadas para botões */
+            font-size: 16px;
+            transition: background 0.3s ease, transform 0.2s ease;
         }
 
         .menu button:hover {
-            background: #555;
+            background: #ff61a6;
+            color: #fff;
+            transform: scale(1.1); /* Efeito de aumento no botão */
         }
 
         .video-feed {
@@ -42,18 +48,33 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 15px;
             padding: 20px;
+            justify-items: center;
         }
 
         .video-item {
             background: #fff;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 15px; /* Bordas arredondadas */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 400px;
+            overflow: hidden;
+        }
+
+        .video-item:hover {
+            transform: translateY(-10px); /* Efeito de elevação */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         video {
             width: 100%;
-            border-radius: 5px;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        video:hover {
+            transform: scale(1.05); /* Efeito de zoom */
         }
 
         .popup {
@@ -63,23 +84,45 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.7);
             justify-content: center;
             align-items: center;
+            z-index: 1001;
         }
 
         .popup video {
             width: 90%;
             max-width: 800px;
+            border-radius: 15px;
         }
 
         .popup .close {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 15px;
+            right: 15px;
             color: #fff;
-            font-size: 20px;
+            font-size: 25px;
             cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .popup .close:hover {
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .menu button {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+
+            .video-feed {
+                padding: 10px;
+            }
+
+            .video-item {
+                padding: 10px;
+            }
         }
     </style>
 </head>
@@ -88,7 +131,7 @@
 <div class="menu">
     <button onclick="filterVideos('all')">Home</button>
     <button onclick="filterVideos('category1')">Category 1</button>
-    <button onclick="filterVideos('red')">red</button>
+    <button onclick="filterVideos('red')">Red</button>
 </div>
 
 <div class="video-feed" id="video-feed">
@@ -104,7 +147,7 @@
     </div>
     <div class="video-item" data-category="category1">
         <video id="video3" controls>
-            <source src="video3.mp4" type="video/mp4">
+            <source src="https://files.catbox.moe/f6at2i.mp4" type="video/mp4">
         </video>
     </div>
 </div>
